@@ -1,0 +1,20 @@
+# Caddy snippet – add to your Caddyfile
+# This exposes the PULSE API + widget under /pulse/ on your Element domain.
+#
+# Example: https://element.example.com/pulse/widget/  → presence widget
+#          https://element.example.com/pulse/api/     → REST API
+
+element.example.com {
+  # ... your existing Element config above ...
+
+  # PULSE presence bot
+  handle /pulse/* {
+    uri strip_prefix /pulse
+    reverse_proxy pulse-bot:3000
+  }
+}
+
+# ── Standalone subdomain variant ──────────────────────────────
+# pulse.example.com {
+#   reverse_proxy pulse-bot:3000
+# }

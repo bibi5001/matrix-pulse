@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  pulse-bot:
+    image: ghcr.io/yourorg/matrix-pulse:latest   # or: build: .
+    build: .
+    container_name: pulse-bot
+    restart: unless-stopped
+
+    environment:
+      # ── Required ──────────────────────────────────────────────────
+      MATRIX_HOMESERVER_URL: "${MATRIX_HOMESERVER_URL}"
+      MATRIX_BOT_USER_ID:    "${MATRIX_BOT_USER_ID}"
+      MATRIX_BOT_ACCESS_TOKEN: "${MATRIX_BOT_ACCESS_TOKEN}"
+
+      # ── Optional ──────────────────────────────────────────────────
+      PORT: "3000"
+      # How often to poll presence (ms). Lower = more load on homeserver.
+      PRESENCE_POLL_INTERVAL_MS: "15000"
+      # Restrict CORS to your Element instance (recommended for production)
+      # WIDGET_ORIGIN: "https://element.example.com"
+
+    ports:
+      - "127.0.0.1:3001:3000"   # Expose only on localhost; put Caddy in front
+
+    networks:
+      - matrix-net
+
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+networks:
+  # Attach to the same network as your Synapse container
+  # so the bot can reach the homeserver by container name
+  matrix-net:
+    external: true
+    name: "${MATRIX_NETWORK:-matrix-net}"
