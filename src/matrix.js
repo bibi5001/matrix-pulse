@@ -47,6 +47,19 @@ async function createMatrixClient(store) {
     }
   });
 
+ // Auto-join on invite
+ client.on(sdk.RoomMemberEvent.Membership, async (event, member) => {
+   if (member.membership === "invite" && member.userId === botUserId) {
+     console.log(`[Matrix] Auto-joining room: ${member.roomId}`);
+     try {
+       await client.joinRoom(member.roomId);
+       console.log(`[Matrix] Joined room: ${member.roomId}`);
+     } catch (err) {
+       console.error(`[Matrix] Failed to join room ${member.roomId}:`, err.message);
+     }
+   }
+ });
+
   // Also handle raw state events during sync
   client.on(sdk.RoomStateEvent.Events, (event, state, prevEvent) => {
     if (event.getType() === "org.matrix.msc3401.call.member") {
