@@ -26,96 +26,56 @@
   --mono:        'JetBrains Mono', monospace;
   --sans:        'Inter', sans-serif;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--sans);
-  font-size: 12px;
-  height: 100dvh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  background: var(--bg); color: var(--text);
+  font-family: var(--sans); font-size: 12px;
+  height: 100dvh; overflow: hidden;
+  display: flex; flex-direction: column;
 }
 
-/* ── HEADER ───────────────────────────────────── */
+/* HEADER */
 #header {
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding: 8px 10px; display: flex; align-items: center; gap: 8px; flex-shrink: 0;
 }
-
 #own-avatar {
-  width: 26px; height: 26px;
-  border-radius: 4px;
-  background: var(--bg4);
+  width: 26px; height: 26px; border-radius: 4px; background: var(--bg4);
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono);
-  font-size: 10px; font-weight: 700;
-  color: var(--text-muted);
-  flex-shrink: 0;
-  position: relative;
-  user-select: none;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--text-muted); flex-shrink: 0; position: relative; user-select: none;
 }
 #own-status-dot {
-  position: absolute;
-  bottom: -2px; right: -2px;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  border: 2px solid var(--bg2);
-  background: var(--offline);
-  transition: background .3s;
+  position: absolute; bottom: -2px; right: -2px;
+  width: 8px; height: 8px; border-radius: 50%;
+  border: 2px solid var(--bg2); background: var(--offline); transition: background .3s;
 }
-
 #own-info { flex: 1; min-width: 0; }
 #own-name {
-  font-family: var(--mono);
-  font-size: 11px; font-weight: 600;
-  color: var(--text);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-#own-label {
-  font-size: 10px; color: var(--text-muted);
-  font-family: var(--mono);
-}
-
+#own-label { font-size: 10px; color: var(--text-muted); font-family: var(--mono); }
 #notif-btn {
-  background: none; border: 1px solid var(--border2);
-  color: var(--text-muted); border-radius: 3px;
-  padding: 3px 6px; cursor: pointer; font-size: 10px;
-  font-family: var(--mono);
-  transition: all .15s;
-  white-space: nowrap; flex-shrink: 0;
+  background: none; border: 1px solid var(--border2); color: var(--text-muted);
+  border-radius: 3px; padding: 3px 6px; cursor: pointer; font-size: 10px;
+  font-family: var(--mono); transition: all .15s; white-space: nowrap; flex-shrink: 0;
 }
 #notif-btn:hover { border-color: var(--accent); color: var(--accent); }
 #notif-btn.granted { display: none; }
 
-/* ── STATUS BAR ───────────────────────────────── */
+/* STATUS BAR */
 #status-bar {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 3px; padding: 6px 8px;
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-  background: var(--bg2);
+  gap: 3px; padding: 6px 8px; border-bottom: 1px solid var(--border);
+  flex-shrink: 0; background: var(--bg2);
 }
 .s-btn {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 2px;
-  padding: 5px 2px; border-radius: 3px;
-  border: 1px solid transparent;
-  background: var(--bg3);
-  color: var(--text-muted);
-  cursor: pointer; font-family: var(--mono);
-  font-size: 9px; font-weight: 600;
-  letter-spacing: .04em; text-transform: uppercase;
-  transition: all .12s;
-  position: relative;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 5px 2px; border-radius: 3px; border: 1px solid transparent;
+  background: var(--bg3); color: var(--text-muted); cursor: pointer;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  letter-spacing: .04em; text-transform: uppercase; transition: all .12s; position: relative;
 }
 .s-btn:hover { background: var(--bg4); color: var(--text); }
 .s-btn.active { background: var(--bg4); border-color: var(--border2); color: var(--text); }
@@ -125,50 +85,30 @@ body {
 .s-btn[data-status="dnd"]     .dot { background: var(--dnd); }
 .s-btn[data-status="offline"] .dot { background: var(--text-dim); }
 .auto-tag {
-  position: absolute; top: 2px; right: 3px;
-  font-size: 7px; color: var(--accent);
-  font-family: var(--mono); font-weight: 700;
+  position: absolute; top: 2px; right: 3px; font-size: 7px;
+  color: var(--accent); font-family: var(--mono); font-weight: 700;
 }
 
-/* ── MSG ROW ──────────────────────────────────── */
+/* MSG ROW */
 #msg-row {
   display: flex; gap: 4px; padding: 5px 8px;
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0; background: var(--bg2);
+  border-bottom: 1px solid var(--border); flex-shrink: 0; background: var(--bg2);
 }
 #status-msg {
-  flex: 1; background: var(--bg3);
-  border: 1px solid var(--border);
-  color: var(--text); border-radius: 3px;
-  padding: 4px 8px; font-size: 11px; font-family: var(--mono);
-  outline: none; transition: border-color .15s;
+  flex: 1; background: var(--bg3); border: 1px solid var(--border);
+  color: var(--text); border-radius: 3px; padding: 4px 8px;
+  font-size: 11px; font-family: var(--mono); outline: none; transition: border-color .15s;
 }
 #status-msg:focus { border-color: var(--accent); }
 #status-msg::placeholder { color: var(--text-dim); }
 #reset-btn {
-  background: var(--bg3); border: 1px solid var(--border);
-  color: var(--text-muted); border-radius: 3px;
-  padding: 4px 8px; cursor: pointer;
-  font-family: var(--mono); font-size: 10px;
-  transition: all .12s; white-space: nowrap;
+  background: var(--bg3); border: 1px solid var(--border); color: var(--text-muted);
+  border-radius: 3px; padding: 4px 8px; cursor: pointer;
+  font-family: var(--mono); font-size: 10px; transition: all .12s; white-space: nowrap;
 }
 #reset-btn:hover { border-color: var(--border2); color: var(--text); }
 
-/* ── SECTION HEADER ───────────────────────────── */
-.section-hdr {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 8px 10px 3px; flex-shrink: 0;
-}
-.section-hdr .lbl {
-  font-family: var(--mono); font-size: 9px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim);
-}
-.section-hdr .cnt {
-  font-family: var(--mono); font-size: 9px; color: var(--text-dim);
-  background: var(--bg3); padding: 1px 6px; border-radius: 2px;
-}
-
-/* ── MEMBER LIST ──────────────────────────────── */
+/* MEMBER LIST */
 #member-list { flex: 1; overflow-y: auto; padding: 2px 6px 6px; }
 #member-list::-webkit-scrollbar { width: 3px; }
 #member-list::-webkit-scrollbar-track { background: transparent; }
@@ -180,18 +120,15 @@ body {
   cursor: default; transition: background .1s;
 }
 .member-row:hover { background: var(--bg3); }
-
 .m-avatar {
   width: 26px; height: 26px; border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--mono); font-size: 10px; font-weight: 700;
-  color: rgba(255,255,255,.7);
-  flex-shrink: 0; position: relative; user-select: none;
+  color: rgba(255,255,255,.7); flex-shrink: 0; position: relative; user-select: none;
 }
 .av0{background:#1a3a5c}.av1{background:#3a1a5c}.av2{background:#1a5c3a}
 .av3{background:#5c3a1a}.av4{background:#5c1a1a}.av5{background:#1a4a5c}
 .av6{background:#4a1a5c}.av7{background:#1a5c4a}
-
 .m-dot {
   position: absolute; bottom: -1px; right: -1px;
   width: 8px; height: 8px; border-radius: 50%;
@@ -202,47 +139,39 @@ body {
 .dot-away    { background: var(--away)   !important; }
 .dot-dnd     { background: var(--dnd)    !important; }
 .dot-offline { background: var(--offline)!important; }
-
 .m-info { flex: 1; min-width: 0; }
 .m-name {
-  font-family: var(--mono); font-size: 11px; font-weight: 600;
-  color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--text);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .member-row.is-offline .m-name { color: var(--text-muted); }
 .m-sub {
   font-size: 10px; color: var(--text-muted);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px;
 }
-
 .call-badge {
   display: flex; align-items: center; gap: 3px;
   font-family: var(--mono); font-size: 9px; font-weight: 700;
-  color: var(--call); letter-spacing: .05em;
-  padding: 2px 5px; border: 1px solid rgba(0,230,118,.2);
-  border-radius: 2px; background: rgba(0,230,118,.06);
-  flex-shrink: 0; animation: callpulse 2s infinite;
+  color: var(--call); letter-spacing: .05em; padding: 2px 5px;
+  border: 1px solid rgba(0,230,118,.2); border-radius: 2px;
+  background: rgba(0,230,118,.06); flex-shrink: 0; animation: callpulse 2s infinite;
 }
 .call-badge::before {
   content:''; width:5px; height:5px; border-radius:50%;
   background: var(--call); animation: callpulse 2s infinite;
 }
 @keyframes callpulse { 0%,100%{opacity:1} 50%{opacity:.4} }
-
 .list-divider { height:1px; background:var(--border); margin:4px 4px 5px; }
-
 .group-hdr {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 6px 6px 2px;
+  display: flex; align-items: center; justify-content: space-between; padding: 6px 6px 2px;
 }
 .group-hdr .lbl {
   font-family: var(--mono); font-size: 9px; font-weight: 700;
   letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim);
 }
-.group-hdr .cnt {
-  font-family: var(--mono); font-size: 9px; color: var(--text-dim);
-}
+.group-hdr .cnt { font-family: var(--mono); font-size: 9px; color: var(--text-dim); }
 
-/* ── BOTTOM BAR ───────────────────────────────── */
+/* BOTTOM BAR */
 #bottom-bar {
   border-top: 1px solid var(--border); background: var(--bg2);
   padding: 4px 10px; display: flex; align-items: center; gap: 6px; flex-shrink: 0;
@@ -258,42 +187,17 @@ body {
   flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 #audio-btn {
-  background: none; border: none; color: var(--text-dim);
-  cursor: pointer; font-size: 13px; padding: 0 2px;
-  transition: color .15s; line-height: 1; flex-shrink: 0;
+  background: none; border: none; color: var(--text-dim); cursor: pointer;
+  font-size: 13px; padding: 0 2px; transition: color .15s; line-height: 1; flex-shrink: 0;
 }
 #audio-btn:hover { color: var(--text); }
 
-/* ── HINT / LOGIN ─────────────────────────────── */
+/* HINT */
 #hint {
   flex: 1; display: flex; align-items: center; justify-content: center;
   font-family: var(--mono); font-size: 10px; color: var(--text-dim);
-  padding: 20px; text-align: center; line-height: 2;
-  white-space: pre-line;
+  padding: 20px; text-align: center; line-height: 2; white-space: pre-line;
 }
-#login-form {
-  padding: 12px 10px; display: none; flex-direction: column; gap: 6px;
-}
-#login-form.visible { display: flex; }
-.f-label {
-  font-family: var(--mono); font-size: 9px; font-weight: 700;
-  letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 2px;
-}
-.f-input {
-  background: var(--bg3); border: 1px solid var(--border);
-  color: var(--text); border-radius: 3px;
-  padding: 6px 9px; font-size: 11px; font-family: var(--mono);
-  outline: none; transition: border-color .15s; width: 100%;
-}
-.f-input:focus { border-color: var(--accent); }
-.f-input::placeholder { color: var(--text-dim); }
-.f-btn {
-  background: var(--accent); border: none; color: #fff; border-radius: 3px;
-  padding: 7px; cursor: pointer; font-family: var(--mono);
-  font-size: 11px; font-weight: 600; letter-spacing: .04em; transition: opacity .15s;
-}
-.f-btn:hover { opacity: .85; }
-.f-hint { font-size: 10px; color: var(--text-dim); font-family: var(--mono); line-height: 1.6; }
 </style>
 </head>
 <body>
@@ -302,7 +206,7 @@ body {
   <div id="own-avatar">--<div id="own-status-dot"></div></div>
   <div id="own-info">
     <div id="own-name">PULSE</div>
-    <div id="own-label">nicht verbunden</div>
+    <div id="own-label">verbinde…</div>
   </div>
   <button id="notif-btn" style="display:none">🔔 AN</button>
 </div>
@@ -321,45 +225,38 @@ body {
   <button id="reset-btn">⟳ AUTO</button>
 </div>
 
-<div class="section-hdr" id="members-hdr" style="display:none">
-  <span class="lbl">MITGLIEDER</span>
-  <span class="cnt" id="member-count">–</span>
-</div>
-
-<div id="hint">PULSE\nverbinde…</div>
+<div id="hint">PULSE\nlade…</div>
 <div id="member-list" style="display:none"></div>
-
-<div id="login-form">
-  <div class="f-hint">Kein Token gefunden.<br>Element → Einstellungen → Sicherheit → Zugriffs-Token</div>
-  <div><div class="f-label">Access Token</div><input id="f-token" class="f-input" type="password" placeholder="syt_…"></div>
-  <div><div class="f-label">User-ID</div><input id="f-user" class="f-input" type="text" placeholder="@name:server"></div>
-  <div><div class="f-label">Raum-ID (optional)</div><input id="f-room" class="f-input" type="text" placeholder="!abc:server"></div>
-  <button class="f-btn" onclick="doConnect()">VERBINDEN</button>
-</div>
 
 <div id="bottom-bar">
   <div class="live-dot err" id="live-dot"></div>
-  <span id="bottom-text">warte auf Verbindung…</span>
+  <span id="bottom-text">verbinde…</span>
   <button id="audio-btn" title="Audio an/aus">🔊</button>
 </div>
 
 <script>
 'use strict';
 
-const HS      = "https://stiftung-waffentest.de";
-const IDLE_MS = 5  * 60 * 1000;
-const AWAY_MS = 15 * 60 * 1000;
-const PUSH_MS = 30_000;
-const SYNC_MS = 60_000;
+// ── Config ──────────────────────────────────────
+// API_BASE: Backend-URL. Kann per ?api=https://... überschrieben werden.
+// HS: Homeserver für eigenen Presence-Status setzen (Status-Buttons)
+const params   = new URLSearchParams(location.search);
+const API_BASE = (params.get("api") || "https://pulse.stiftung-waffentest.de").replace(/\/$/,"");
+const HS       = params.get("hs") || "https://stiftung-waffentest.de";
+const POLL_MS  = parseInt(params.get("poll") || "15000", 10);
 
+const IDLE_MS  = 5  * 60 * 1000;
+const AWAY_MS  = 15 * 60 * 1000;
+const PUSH_MS  = 30_000;
+
+// ── State ────────────────────────────────────────
 const S = {
-  token:null, userId:null, roomId:null,
-  manualStatus:null, autoStatus:"online",
-  lastActivity:Date.now(),
-  members:{},
-  audioOn:true,
-  prevPresence:{},
-  prevCalls:{},
+  token: null, userId: null,
+  manualStatus: null, autoStatus: "online",
+  lastActivity: Date.now(),
+  audioOn: true,
+  prevPresence: {},
+  prevCalls: {},
 };
 
 const STATUS = {
@@ -369,7 +266,7 @@ const STATUS = {
   offline: {label:"Unsichtbar",   dot:"dot-offline", presence:"offline",     msg:""},
 };
 
-// ── Audio ───────────────────────────────────────
+// ── Audio ────────────────────────────────────────
 let _actx = null;
 function actx() {
   if (!_actx) _actx = new (window.AudioContext || window.webkitAudioContext)();
@@ -391,7 +288,7 @@ function sfx_offline() { tone(440,'sine',.1,.18); setTimeout(()=>tone(293,'sine'
 function sfx_call()    { tone(523,'sine',.08,.2); setTimeout(()=>tone(659,'sine',.08,.2),80); setTimeout(()=>tone(784,'sine',.18,.18),160); }
 function sfx_callend() { tone(392,'sine',.1,.18); setTimeout(()=>tone(330,'sine',.18,.15),90); }
 
-// ── Notifications ───────────────────────────────
+// ── Notifications ────────────────────────────────
 function askNotif() {
   Notification.requestPermission().then(p => {
     if (p==='granted') document.getElementById('notif-btn').classList.add('granted');
@@ -402,7 +299,8 @@ function notify(title, body, icon='🟢') {
   try { new Notification(`${icon} ${title}`, {body, silent:true, tag:title}); } catch(e){}
 }
 
-// ── Widget postMessage / OpenID ─────────────────
+// ── Widget postMessage / OpenID ──────────────────
+// Für eigenen Presence-Status setzen brauchen wir den Token des eingeloggten Users
 let widgetId=null, wSrc=null;
 const _pend={};
 function wpost(action, data={}) {
@@ -418,7 +316,13 @@ window.addEventListener("message", async e=>{
   if(m.requestId && _pend[m.requestId]){_pend[m.requestId](m.data??m.response);delete _pend[m.requestId];return;}
   if(m.action==="capabilities"){
     widgetId=m.widgetId||widgetId; wSrc=e.source;
-    e.source.postMessage({api:"fromWidget",widgetId,requestId:m.requestId,action:"capabilities",data:{capabilities:["m.always_on_screen"]}},"*");
+    e.source.postMessage({
+      api:"fromWidget", widgetId, requestId:m.requestId,
+      action:"capabilities",
+      data:{capabilities:["m.always_on_screen","org.matrix.msc2762.receive.state_events","org.matrix.msc2762.send.event"]}
+    },"*");
+    // OpenID sofort nach capabilities anfragen
+    setTimeout(tryOpenId, 500);
     return;
   }
   if(m.action==="openid_credentials" && m.data?.access_token){
@@ -427,223 +331,213 @@ window.addEventListener("message", async e=>{
     await useOpenId(m.data);
   }
 });
+
 async function tryOpenId(){
   let r=await wpost("get_openid",{});
   if(r?.access_token){await useOpenId(r);return;}
   r=await wpost("org.matrix.msc2762.get_openid",{});
   if(r?.access_token){await useOpenId(r);return;}
-  if(!S.token) showLoginForm();
+  // Fallback: localStorage (Element Desktop)
+  tryLocalStorage();
 }
+
 async function useOpenId(od){
   try{
     const r=await fetch(`${HS}/_matrix/federation/v1/openid/userinfo?access_token=${od.access_token}`);
     if(r.ok){const d=await r.json();S.userId=S.userId||d.sub;}
   }catch{}
   S.token=od.access_token;
-  await start();
+  initOwnStatus();
 }
 
-// ── Matrix API ──────────────────────────────────
-const enc=s=>encodeURIComponent(s);
-async function api(method,path,body){
-  if(!S.token) return null;
+function tryLocalStorage(){
   try{
-    const r=await fetch(`${HS}/_matrix/client/v3${path}`,{
-      method, headers:{Authorization:`Bearer ${S.token}`,"Content-Type":"application/json"},
-      body:body?JSON.stringify(body):undefined,
-    });
-    if(!r.ok) return null;
-    return r.json();
-  }catch{return null;}
+    for(const k of Object.keys(localStorage)){
+      if(k.includes("mx_access_token")) S.token=localStorage.getItem(k);
+      if(k.includes("mx_user_id")&&!S.userId) S.userId=localStorage.getItem(k);
+    }
+    if(S.token) initOwnStatus();
+  }catch{}
 }
-const GET=(p)=>api("GET",p);
-const PUT=(p,b)=>api("PUT",p,b);
 
-async function setPresence(key,msg){
-  if(!S.userId) return;
+// ── Matrix API (nur für eigenen Status) ──────────
+const enc=s=>encodeURIComponent(s);
+async function matrixPut(path, body){
+  if(!S.token) return;
+  try{
+    await fetch(`${HS}/_matrix/client/v3${path}`,{
+      method:"PUT",
+      headers:{Authorization:`Bearer ${S.token}`,"Content-Type":"application/json"},
+      body:JSON.stringify(body),
+    });
+  }catch{}
+}
+async function setPresence(key, msg){
+  if(!S.userId||!S.token) return;
   const s=STATUS[key];
   const m=msg!==undefined?msg:s.msg;
-  await PUT(`/presence/${enc(S.userId)}/status`,{presence:s.presence,status_msg:m});
+  await matrixPut(`/presence/${enc(S.userId)}/status`,{presence:s.presence,status_msg:m});
 }
 
 // ── Boot ─────────────────────────────────────────
 async function boot(){
   const p=new URLSearchParams(location.search);
   S.userId  = p.get("userId")||p.get("user_id")||null;
-  S.roomId  = p.get("roomId")||p.get("room_id")||null;
   widgetId  = p.get("widgetId")||"pulse-widget";
   S.audioOn = p.get("audio")!=="0";
 
-  try{const t=sessionStorage.getItem("pulse_tok");if(t){S.token=t;S.userId=S.userId||sessionStorage.getItem("pulse_uid");}}catch{}
-  if(!S.token){
-    try{for(const k of Object.keys(localStorage)){
-      if(k.includes("mx_access_token")) S.token=localStorage.getItem(k);
-      if(k.includes("mx_user_id")&&!S.userId) S.userId=localStorage.getItem(k);
-    }}catch{}
-  }
-  if(S.token){await start();return;}
-  setTimeout(()=>{if(!S.token)showLoginForm();},4000);
-  tryOpenId();
-}
-
-function showLoginForm(){
-  document.getElementById('hint').style.display='none';
-  document.getElementById('login-form').classList.add('visible');
-  setBottom("manueller Login erforderlich",true);
-}
-
-window.doConnect=async function(){
-  const t=document.getElementById('f-token')?.value.trim();
-  const u=document.getElementById('f-user')?.value.trim();
-  const r=document.getElementById('f-room')?.value.trim();
-  if(!t||!u){alert("Token und User-ID sind Pflichtfelder");return;}
-  S.token=t;S.userId=u;if(r)S.roomId=r;
-  try{sessionStorage.setItem("pulse_tok",t);sessionStorage.setItem("pulse_uid",u);}catch{}
-  document.getElementById('login-form').classList.remove('visible');
-  document.getElementById('hint').style.display='flex';
-  document.getElementById('hint').textContent='Verbinde…';
-  await start();
-};
-
-// ── Start ────────────────────────────────────────
-async function start(){
-  if(S.userId){
-    const d=await GET(`/profile/${enc(S.userId)}/displayname`);
-    const name=d?.displayname||S.userId.split(":")[0].replace("@","");
-    document.getElementById('own-name').textContent=name;
-    const av=document.getElementById('own-avatar');
-    av.childNodes[0].nodeValue=name.slice(0,2).toUpperCase();
-  }
-  if(!S.roomId){
-    try{const m=window.parent.location.hash.match(/#\/room\/([^/?]+)/);if(m)S.roomId=decodeURIComponent(m[1]);}catch{}
-  }
-  await setPresence("online","");
-  updateBar();
-
-  if(Notification.permission==='granted') document.getElementById('notif-btn').classList.add('granted');
-  else if(Notification.permission!=='denied'){
+  // Notification-Button
+  if(Notification.permission==='granted')
+    document.getElementById('notif-btn').classList.add('granted');
+  else if(Notification.permission!=='denied')
     document.getElementById('notif-btn').style.display='';
-  }
 
-  await syncMembers();
-  setInterval(checkIdle,30_000);
-  setInterval(syncMembers,SYNC_MS);
-  setInterval(()=>setPresence(cur(),document.getElementById('status-msg').value.trim()||undefined),PUSH_MS);
+  // Sofort Daten vom Backend laden — kein Token nötig
+  startPolling();
+
+  // Parallel: eigenen Token für Status-Buttons holen
+  setTimeout(tryOpenId, 1000);
 }
 
-// ── Sync ─────────────────────────────────────────
-async function syncMembers(){
-  if(!S.roomId){
-    document.getElementById('hint').style.display='flex';
-    document.getElementById('hint').textContent='Kein Raum erkannt.\nBitte Raum-ID eingeben.';
-    document.getElementById('member-list').style.display='none';
-    document.getElementById('members-hdr').style.display='none';
-    setBottom("kein Raum",true);
-    return;
+// ── Backend polling ──────────────────────────────
+function startPolling(){
+  fetchAndRender();
+  setInterval(fetchAndRender, POLL_MS);
+}
+
+async function fetchAndRender(){
+  try{
+    const res=await fetch(`${API_BASE}/api/presence`);
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data=await res.json();
+    processData(data);
+    setBottom(`${Object.values(data).filter(u=>u.presence!=='offline').length} online · ${Object.keys(data).length} gesamt`, false);
+  }catch(err){
+    setBottom(`Fehler: ${err.message}`, true);
   }
-  const data=await GET(`/rooms/${enc(S.roomId)}/members`);
-  const joined=(data?.chunk||[]).filter(m=>m.content?.membership==="join");
+}
 
-  for(const m of joined){
-    const uid=m.state_key; if(!uid) continue;
-    const nd=await GET(`/profile/${enc(uid)}/displayname`);
-    const name=nd?.displayname||uid.split(":")[0].replace("@","");
-    const pres=await GET(`/presence/${enc(uid)}/status`);
+function processData(data){
+  const entries=Object.values(data);
 
-    let status="offline";
-    if(pres){
-      if(pres.status_msg==="Nicht stören")  status="dnd";
-      else if(pres.status_msg==="Abwesend") status="away";
-      else if(pres.presence==="online")      status="online";
-      else if(pres.presence==="unavailable") status="away";
-    }
+  // Eigener User — Header aktualisieren
+  if(S.userId && data[S.userId]){
+    const me=data[S.userId];
+    const name=S.userId.split(":")[0].replace("@","");
+    document.getElementById('own-name').textContent=name;
+    document.getElementById('own-avatar').childNodes[0].nodeValue=name.slice(0,2).toUpperCase();
+    document.getElementById('own-status-dot').style.background=
+      {online:"var(--online)",unavailable:"var(--away)",offline:"var(--offline)"}[me.presence]||"var(--offline)";
+    document.getElementById('own-label').textContent=
+      S.manualStatus===null ? (STATUS[S.autoStatus]?.label||"Online")+" (auto)" : STATUS[S.manualStatus]?.label||"";
+  }
 
-    // Call-Status via MSC3401/MSC4143 State Event
-    const callEv=await GET(`/rooms/${enc(S.roomId)}/state/org.matrix.msc3401.call.member/${enc(uid)}`);
-    const inCall=callEv && Object.keys(callEv).length>0;
-
-    // Änderungs-Detection → Audio + Notification
+  // Änderungs-Detection → Audio + Notification
+  for(const u of entries){
+    const uid=u.userId;
+    const name=uid.split(":")[0].replace("@","");
     const prevSt=S.prevPresence[uid];
     const prevCl=S.prevCalls[uid];
+
     if(prevSt!==undefined){
-      if(prevSt!==status){
-        if(status==="online")  {sfx_online();  notify(name,"ist jetzt online","🟢");}
-        if(status==="offline") {sfx_offline(); notify(name,"ist offline gegangen","⚫");}
+      if(prevSt!==u.presence){
+        if(u.presence==="online")  {sfx_online();  notify(name,"ist jetzt online","🟢");}
+        if(u.presence==="offline") {sfx_offline(); notify(name,"ist offline gegangen","⚫");}
       }
     }
-    if(prevCl!==undefined && prevCl!==inCall){
-      if(inCall)  {sfx_call();    notify(name,"ist einem Call beigetreten","🎙️");}
-      if(!inCall) {sfx_callend(); notify(name,"hat den Call verlassen","📵");}
+    if(prevCl!==undefined && prevCl!==u.call?.inCall){
+      if(u.call?.inCall)  {sfx_call();    notify(name,"ist einem Call beigetreten","🎙️");}
+      if(!u.call?.inCall) {sfx_callend(); notify(name,"hat den Call verlassen","📵");}
     }
-    S.prevPresence[uid]=status;
-    S.prevCalls[uid]=inCall;
-    S.members[uid]={name,status,ago:pres?.last_active_ago??null,statusMsg:pres?.status_msg??"",inCall};
+    S.prevPresence[uid]=u.presence;
+    S.prevCalls[uid]=u.call?.inCall||false;
   }
 
-  renderMembers();
-  const online=Object.values(S.members).filter(m=>m.status!=="offline").length;
-  setBottom(`${online} online · ${Object.keys(S.members).length} gesamt`,false);
+  renderMembers(data);
 }
 
 // ── Render ────────────────────────────────────────
-function renderMembers(){
+function renderMembers(data){
   const list=document.getElementById('member-list');
   document.getElementById('hint').style.display='none';
   list.style.display='';
-  document.getElementById('members-hdr').style.display='';
 
-  const entries=Object.entries(S.members);
-  if(!entries.length) return;
+  // Bot-Account ausblenden
+  const entries=Object.values(data).filter(u=>!u.userId.includes('pulse-bot'));
+  if(!entries.length){ list.innerHTML=''; return; }
 
-  const ord={online:0,dnd:1,away:2,offline:3};
-  entries.sort(([,a],[,b])=>(ord[a.status]??4)-(ord[b.status]??4)||a.name.localeCompare(b.name));
-  document.getElementById('member-count').textContent=entries.length;
+  const ord={online:0,dnd:1,unavailable:1,away:2,offline:3};
+  entries.sort((a,b)=>(ord[a.presence]??4)-(ord[b.presence]??4)||
+    a.userId.localeCompare(b.userId));
 
   const groups=[
-    {label:"ONLINE",   items:entries.filter(([,m])=>m.status==="online")},
-    {label:"ABWESEND", items:entries.filter(([,m])=>m.status==="away"||m.status==="dnd")},
-    {label:"OFFLINE",  items:entries.filter(([,m])=>m.status==="offline")},
+    {label:"ONLINE",   items:entries.filter(u=>u.presence==="online")},
+    {label:"ABWESEND", items:entries.filter(u=>u.presence==="unavailable")},
+    {label:"OFFLINE",  items:entries.filter(u=>u.presence==="offline")},
   ];
 
   list.innerHTML="";
-  let firstOffline=true;
+  let addedDivider=false;
 
   for(const {label,items} of groups){
     if(!items.length) continue;
-    if(label==="OFFLINE" && entries.some(([,m])=>m.status!=="offline")){
+    if(label==="OFFLINE" && entries.some(u=>u.presence!=="offline") && !addedDivider){
       const div=document.createElement('div'); div.className='list-divider'; list.appendChild(div);
+      addedDivider=true;
     }
     const ghdr=document.createElement('div'); ghdr.className='group-hdr';
     ghdr.innerHTML=`<span class="lbl">${label}</span><span class="cnt">${items.length}</span>`;
     list.appendChild(ghdr);
 
-    for(const [uid,m] of items){
+    for(const u of items){
+      const uid=u.userId;
       let h=0; for(const c of uid) h=(h*31+c.charCodeAt(0))&0xffff;
       const av="av"+(h%8);
-      const ini=(m.name||uid).slice(0,2).toUpperCase();
-      const sub=m.inCall?"🎙 Im Call":(m.statusMsg||STATUS[m.status]?.label||"");
-      const ago=fmtAgo(m.ago);
+      const name=uid.split(":")[0].replace("@","");
+      const ini=name.slice(0,2).toUpperCase();
+
+      // Status-Dot: presence + statusMsg für DND/Away
+      let dotClass='dot-offline', subLabel='';
+      const sm=u.statusMsg||"";
+      if(sm==="Nicht stören")       {dotClass='dot-dnd';     subLabel="Nicht stören";}
+      else if(sm==="Abwesend")      {dotClass='dot-away';    subLabel="Abwesend";}
+      else if(u.presence==="online"){dotClass='dot-online';  subLabel=sm||"";}
+      else if(u.presence==="unavailable"){dotClass='dot-away'; subLabel=sm||"Abwesend";}
+      else                          {dotClass='dot-offline'; subLabel="";}
+
+      const inCall=u.call?.inCall||false;
+      if(inCall) subLabel="🎙 Im Call";
+      const ago=fmtAgo(u.lastActiveAgo);
+
       const row=document.createElement('div');
-      row.className=`member-row${m.status==="offline"?" is-offline":""}`;
+      row.className=`member-row${u.presence==="offline"?" is-offline":""}`;
       row.innerHTML=`
-        <div class="m-avatar ${av}">${esc(ini)}<div class="m-dot ${STATUS[m.status]?.dot||'dot-offline'}"></div></div>
+        <div class="m-avatar ${av}">${esc(ini)}<div class="m-dot ${dotClass}"></div></div>
         <div class="m-info">
-          <div class="m-name">${esc(m.name||uid.split(":")[0].replace("@",""))}</div>
-          <div class="m-sub">${esc(sub)}${ago&&!m.inCall?` · ${ago}`:""}</div>
+          <div class="m-name">${esc(name)}</div>
+          <div class="m-sub">${esc(subLabel)}${ago&&!inCall?` · ${ago}`:""}</div>
         </div>
-        ${m.inCall?`<div class="call-badge">CALL</div>`:""}
+        ${inCall?`<div class="call-badge">CALL</div>`:""}
       `;
       list.appendChild(row);
     }
   }
 }
 
-// ── Idle ──────────────────────────────────────────
+// ── Eigener Status (braucht Token) ────────────────
+function initOwnStatus(){
+  if(!S.token) return;
+  setPresence("online","");
+  updateBar();
+  setInterval(checkIdle, 30_000);
+  setInterval(()=>setPresence(cur(), document.getElementById('status-msg').value.trim()||undefined), PUSH_MS);
+}
+
 function onActivity(){
   S.lastActivity=Date.now();
   if(S.manualStatus===null&&S.autoStatus!=="online"){
     S.autoStatus="online";
-    setPresence("online",document.getElementById('status-msg').value.trim()||"");
+    setPresence("online", document.getElementById('status-msg').value.trim()||"");
     updateBar();
   }
 }
@@ -658,14 +552,15 @@ function checkIdle(){
 }
 function cur(){return S.manualStatus||S.autoStatus;}
 
-// ── UI ────────────────────────────────────────────
+// ── UI ─────────────────────────────────────────────
 function updateBar(){
-  const key=cur(),isAuto=S.manualStatus===null;
+  const key=cur(), isAuto=S.manualStatus===null;
   document.querySelectorAll('.s-btn').forEach(b=>b.classList.toggle('active',b.dataset.status===key));
   document.getElementById('auto-tag').style.display=isAuto?'':'none';
   document.getElementById('own-status-dot').style.background=
     {online:"var(--online)",away:"var(--away)",dnd:"var(--dnd)",offline:"var(--offline)"}[key]||"var(--offline)";
-  document.getElementById('own-label').textContent=isAuto?STATUS[key].label+" (auto)":STATUS[key].label;
+  document.getElementById('own-label').textContent=
+    isAuto?STATUS[key].label+" (auto)":STATUS[key].label;
 }
 function setBottom(msg,err=false){
   document.getElementById('bottom-text').textContent=msg;
@@ -681,19 +576,19 @@ function fmtAgo(ms){
 }
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 
-// ── Events ────────────────────────────────────────
+// ── Events ──────────────────────────────────────────
 document.querySelectorAll('.s-btn').forEach(b=>b.addEventListener('click',()=>{
   S.manualStatus=b.dataset.status;
-  setPresence(b.dataset.status,document.getElementById('status-msg').value.trim()||undefined);
+  setPresence(b.dataset.status, document.getElementById('status-msg').value.trim()||undefined);
   updateBar(); actx();
 }));
 document.getElementById('status-msg').addEventListener('keydown',e=>{
   if(e.key==='Enter') setPresence(cur(),e.target.value.trim()||undefined);
 });
 document.getElementById('reset-btn').addEventListener('click',()=>{
-  S.manualStatus=null;S.autoStatus="online";
+  S.manualStatus=null; S.autoStatus="online";
   document.getElementById('status-msg').value="";
-  setPresence("online","");updateBar();
+  setPresence("online",""); updateBar();
 });
 document.getElementById('audio-btn').addEventListener('click',()=>{
   S.audioOn=!S.audioOn;
